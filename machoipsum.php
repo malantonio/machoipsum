@@ -54,10 +54,10 @@ class Macho {
   );
 
   static $people = array(
-    "Tito Santana, ",
-    "Hulk Hogan, ",
-    "Honky Tonk Man, ",
-    "Hacksaw Jim Duggan, "
+    "Tito Santana",
+    "Hulk Hogan",
+    "Honky Tonk Man",
+    "Hacksaw Jim Duggan"
   );
 
   static $callout = array(
@@ -152,9 +152,9 @@ class Macho {
    *
    */
 
-  static function headline($html = "html") {
+  static function headline($html = true) {
     $pool = self::$isolated;
-    $tag = $html == "html" ? array("<h1>","</h1>") : array("","");
+    $tag = $html ? array("<h1>","</h1>") : array("","");
     shuffle($pool);
     foreach($pool as $headline) {
       if(strlen($headline) < self::$headlineCharLength) {
@@ -174,10 +174,10 @@ class Macho {
    *   and it'll blob it up. 
    */
 
-  static function ipsum($paragraphs = 5, $class = null, $html = "html") {
+  static function ipsum($paragraphs = 5, $class = null, $html = true) {
     // declare some variables
     $class = $class ? " class=\"{$class}\"" : "";
-    $tag = $html == "html" ? array("<p{$class}>","</p>") : array("","");
+    $tag = $html ? array("<p{$class}>","</p>") : array("","");
     $starting = self::$starting;
     $people = self::$people;
     $callout = self::$callout;
@@ -203,7 +203,7 @@ class Macho {
       // the opening paragraph will always be from the $starting array and a callout.
       if($p == 0) {
         $ipsum[] = $starting[rand(0, count($starting) - 1)];
-        $ipsum[] = $people[rand(0, count($people) - 1)] . $callout[rand(0, count($callout) - 1)];
+        $ipsum[] = $people[rand(0, count($people) - 1)] . ", " . $callout[rand(0, count($callout) - 1)];
       } else {
         // next we'll build a paragraph
         $sentences = rand(self::$sentencesInParagraph[0], self::$sentencesInParagraph[1]);
