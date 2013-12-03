@@ -18,13 +18,22 @@ will generate 5 paragraphs (using ```<p>``` tags).
 <h3>Options</h3>
 
 ```PHP
-Macho::headline( [ string $html = "html" ] )
+Macho::headline( [ bool $html = true] )
 ```
 
-Anything other than "html" (which is the default), will result in a blob plain text.
+Generates "headline" text (isolated Macho phrases that work on their own). Option to return text without `<h1></h1>` wrapper
 
 ```PHP
-Macho::ipsum( [ int $paragraphs = 5, string $class = null, string $html = "html" ] )
+Macho::ipsum( [ int $paragraphs = 5, string $class = null, bool $html = true ] )
 ```
 
-Adjust the number of paragraphs produced, add a class name, or have ipsum produced as a blob of plain text.
+Generates paragraph ipsum text. Options include: number of paragraphs, attaching class names to the `<p>` tags, and returning plain text. (Note: plain text will push each paragraph together)
+
+<h5>Macho vars</h5>
+
+```PHP
+Macho::$headlineCharLength = 60; // max characters in a "headline"
+Macho::$sentencesInParagraph = array(5,7); // for variety, enter a range.
+```
+
+Also, filling the `Macho::$people` array with names specific to your app can produce fun results!
